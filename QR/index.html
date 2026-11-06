@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Create, customize, and download private QR codes right in your browser.">
+  <title>QR Studio — Create. Customize. Scan.</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script defer src="libraries/qrcode-generator.js"></script>
+  <script defer src="libraries/qrcode-generator-utf8.js"></script>
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="QR Studio home">
+      <img src="assets/logo.svg" width="38" height="38" alt="">
+      <span>QR<span class="brand-accent">Studio</span></span>
+    </a>
+    <nav class="header-links" aria-label="Main navigation" data-i18n-aria-label="mainNavigation">
+      <a href="#features" data-i18n="navFeatures">Features</a>
+      <a href="#faq" data-i18n="navFaq">FAQ</a>
+      <a href="privacy.html" data-i18n="navPrivacy">Privacy</a>
+    </nav>
+    <div class="header-actions">
+      <label class="sr-only" for="language" data-i18n="language">Language</label>
+      <select id="language" class="language-select" aria-label="Language">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="ar">العربية</option>
+      </select>
+      <button id="theme-toggle" class="icon-button theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.64 5.64l1.42 1.42m9.88 9.88 1.42 1.42m0-12.72-1.42 1.42m-9.88 9.88-1.42 1.42M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="heroEyebrow">PRIVATE BY DESIGN · FREE FOREVER</span></span>
+        <h1 data-i18n="heroTitle" data-i18n-html="true">Make your next<br><span class="gradient-text">connection count.</span></h1>
+        <p data-i18n="heroSubtitle">Create beautiful, ready-to-scan QR codes in seconds. Your data stays right here, on your device.</p>
+        <a class="button button-primary hero-cta" href="#studio"><span data-i18n="heroCta">Create your QR code</span><span aria-hidden="true">→</span></a>
+        <div class="hero-trust"><span aria-hidden="true">✦</span><span data-i18n="heroTrust">No account. No tracking. No server.</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-glow"></div>
+        <div class="art-card art-card-back"><span></span><span></span><span></span></div>
+        <div class="art-card art-card-front">
+          <div class="art-code">
+            <svg viewBox="0 0 21 21" role="presentation">
+              <path fill="currentColor" fill-rule="evenodd" d="M0 0h7v7H0zm2 2v3h3V2zm12-2h7v7h-7zm2 2v3h3V2zM0 14h7v7H0zm2 2v3h3v-3zm6-16h2v2H8zm3 0h2v4h-2zm-3 3h2v2H8zm2 2h3v2h-2v2h-2zm3 0h2v3h-2zm-3 4h3v2h-3zm4 0h2v2h-2zm3-2h2v3h-2zm-7 5h2v2h-2zm3 0h2v2h-2zm3 0h2v3h-2zm-6 3h2v2h-2zm3 1h2v2h-2zm3 1h2v2h-2z"/>
+            </svg>
+          </div>
+          <div class="art-caption"><span class="art-caption-dot"></span><span data-i18n="heroCard">Ready to connect</span></div>
+        </div>
+        <div class="art-chip">⌁ <span data-i18n="heroChip">Your brand, your code</span></div>
+        <div class="art-sparkle sparkle-one">✳</div><div class="art-sparkle sparkle-two">✦</div>
+      </div>
+    </section>
+
+    <section id="studio" class="studio-section section-wrap">
+      <div class="section-heading">
+        <span class="eyebrow" data-i18n="studioEyebrow">THE QR WORKSHOP</span>
+        <h2 data-i18n="studioTitle">Your code, your way.</h2>
+        <p data-i18n="studioSubtitle">Choose what to share, then make it unmistakably yours.</p>
+      </div>
+      <div class="studio-card">
+        <div class="editor-column">
+          <div class="step-heading"><span class="step-number">01</span><div><h3 data-i18n="contentTitle">Choose your content</h3><p data-i18n="contentHint">Pick a QR type to get started.</p></div></div>
+          <div id="type-selector" class="type-grid" role="group" aria-label="QR code type"></div>
+          <form id="content-form" novalidate>
+            <div id="fields" class="form-fields"></div>
+          </form>
+
+          <div class="editor-divider"></div>
+          <div class="step-heading"><span class="step-number">02</span><div><h3 data-i18n="designTitle">Make it yours</h3><p data-i18n="designHint">A little personality. Keep it scannable.</p></div></div>
+          <div class="design-controls">
+            <div class="color-row">
+              <label class="color-control"><span data-i18n="foreground">Foreground</span><span class="color-input-wrap"><input id="foreground" type="color" value="#172554" aria-label="Foreground color"><span id="foreground-value">#172554</span></span></label>
+              <label class="color-control"><span data-i18n="background">Background</span><span class="color-input-wrap"><input id="background" type="color" value="#ffffff" aria-label="Background color"><span id="background-value">#FFFFFF</span></span></label>
+            </div>
+            <label class="check-row"><input id="transparent" type="checkbox"><span data-i18n="transparent">Transparent background</span><span class="supported-pill" data-i18n="supported">PNG / SVG</span></label>
+            <div class="select-row">
+              <label><span data-i18n="dotStyle">Dot style</span><select id="dot-style"><option value="square" data-i18n="styleSquare">Square</option><option value="rounded" data-i18n="styleRounded">Rounded</option><option value="circle" data-i18n="styleCircle">Circle</option></select></label>
+              <label><span data-i18n="cornerStyle">Corner style</span><select id="corner-style"><option value="square" data-i18n="styleSquare">Square</option><option value="rounded" data-i18n="styleRounded">Rounded</option></select></label>
+            </div>
+            <label class="upload-control" for="logo-upload">
+              <span class="upload-icon" aria-hidden="true">＋</span><span class="upload-copy"><strong data-i18n="logoLabel">Add a logo</strong><small id="logo-name" data-i18n="logoHint">PNG, JPEG or WebP · processed on-device</small></span><span class="upload-action" data-i18n="upload">Upload</span>
+              <input id="logo-upload" type="file" accept="image/png,image/jpeg,image/webp">
+            </label>
+            <div id="logo-options" class="logo-options" hidden>
+              <label><span data-i18n="logoSize">Logo size</span><input id="logo-size" type="range" min="10" max="28" value="18"><output id="logo-size-output">18%</output></label>
+              <label><span data-i18n="logoMargin">Logo margin</span><input id="logo-margin" type="range" min="0" max="8" value="3"><output id="logo-margin-output">3</output></label>
+              <button id="remove-logo" class="text-button" type="button" data-i18n="removeLogo">Remove logo</button>
+            </div>
+            <div class="design-note" role="note"><span aria-hidden="true">ⓘ</span><span data-i18n="designWarning">Styles, colors, and logos can affect scanning. Keep strong contrast and test with your phone before printing.</span></div>
+            <button id="reset-design" class="reset-button" type="button"><span aria-hidden="true">↺</span><span data-i18n="reset">Reset design</span></button>
+          </div>
+        </div>
+
+        <aside class="preview-column" aria-label="QR code preview" data-i18n-aria-label="previewRegion">
+          <div class="preview-topline"><span class="live-indicator"></span><span data-i18n="livePreview">LIVE PREVIEW</span><span id="preview-status" class="preview-status" aria-live="polite" data-i18n="waiting">Waiting for content</span></div>
+          <div id="preview-stage" class="preview-stage">
+            <div id="preview-placeholder" class="preview-placeholder"><div class="placeholder-icon">⌗</div><strong data-i18n="emptyTitle">Your QR code will appear here</strong><span data-i18n="emptyHint">Add your content to see a live preview.</span></div>
+            <img id="qr-preview" alt="" hidden>
+            <div id="preview-error" class="preview-error" role="alert" hidden></div>
+          </div>
+          <div class="preview-tip"><span aria-hidden="true">✦</span><span data-i18n="staticNote">Static QR codes — the content is fixed once created.</span></div>
+          <div class="download-controls">
+            <label class="size-select"><span data-i18n="exportSize">Export size</span><select id="export-size"><option value="256">256 × 256 px</option><option value="512" selected>512 × 512 px</option><option value="1024">1024 × 1024 px</option><option value="2048">2048 × 2048 px</option></select></label>
+            <div class="download-buttons">
+              <button id="download-png" class="button button-primary" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg><span data-i18n="downloadPng">Download PNG</span></button>
+              <button id="download-svg" class="button button-secondary" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg><span data-i18n="downloadSvg">Download SVG</span></button>
+            </div>
+            <button id="copy-content" class="copy-button" type="button" disabled><span aria-hidden="true">▢</span><span data-i18n="copyContent">Copy encoded content</span></button>
+            <p id="feedback" class="feedback" aria-live="polite"></p>
+          </div>
+        </aside>
+      </div>
+      <p class="scan-reminder"><span aria-hidden="true">✓</span><span data-i18n="scanTest">Before you print: scan your code with multiple phones and apps at the final printed size.</span></p>
+    </section>
+
+    <section id="features" class="features-section section-wrap">
+      <div class="section-heading">
+        <span class="eyebrow" data-i18n="featuresEyebrow">MADE FOR PEACE OF MIND</span>
+        <h2 data-i18n="featuresTitle">Simple to use. Yours to trust.</h2>
+        <p data-i18n="featuresSubtitle">Everything you need to create a QR code, nothing you don’t.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="feature-icon purple">◉</div><h3 data-i18n="featurePrivateTitle">Private by default</h3><p data-i18n="featurePrivateBody">Your content and uploaded logo are processed on this device. Nothing is sent to a server or saved for later.</p></article>
+        <article class="feature-card"><div class="feature-icon blue">✧</div><h3 data-i18n="featureFormatTitle">The right format</h3><p data-i18n="featureFormatBody">Create practical QR codes for links, Wi-Fi, contact cards, email, phone, SMS, and plain text.</p></article>
+        <article class="feature-card"><div class="feature-icon mint">⇧</div><h3 data-i18n="featureExportTitle">Ready to share</h3><p data-i18n="featureExportBody">Download crisp PNGs or scalable SVGs at sizes for screens, presentations, or print.</p></article>
+      </div>
+    </section>
+
+    <section class="privacy-banner section-wrap">
+      <div class="privacy-banner-icon" aria-hidden="true">⌑</div>
+      <div><h2 data-i18n="privacyBannerTitle">Your data stays yours.</h2><p data-i18n="privacyBannerBody">QR Studio works entirely in your browser. No accounts, trackers, storage, or uploads. Anyone who scans a QR can read its content, so don’t encode secrets or sensitive information.</p></div>
+      <a href="privacy.html" class="privacy-link"><span data-i18n="privacyDetails">How privacy works</span><span aria-hidden="true">→</span></a>
+    </section>
+
+    <section id="faq" class="faq-section section-wrap">
+      <div class="section-heading"><span class="eyebrow" data-i18n="faqEyebrow">GOOD TO KNOW</span><h2 data-i18n="faqTitle">A few quick answers.</h2></div>
+      <div class="faq-list">
+        <details><summary data-i18n="faq1Question">Are my QR codes static or dynamic?</summary><p data-i18n="faq1Answer">QR Studio creates static QR codes. Their content is embedded directly in the pattern and cannot be changed after creation. To update the content, create and share a new QR code.</p></details>
+        <details><summary data-i18n="faq2Question">Is my QR code encrypted?</summary><p data-i18n="faq2Answer">No. QR codes are not encrypted. Anyone with a camera or scanner can read the content encoded in one. Avoid putting passwords, private keys, or sensitive personal data in a QR code you share publicly.</p></details>
+        <details><summary data-i18n="faq3Question">Can a logo or color make my QR code harder to scan?</summary><p data-i18n="faq3Answer">Yes. Low contrast, decorative styles, and logos covering too many modules can reduce scan reliability. Keep a clear border, use strong contrast, and test the exported code on multiple phones before printing.</p></details>
+        <details><summary data-i18n="faq4Question">Can I use QR Studio offline?</summary><p data-i18n="faq4Answer">After the required site files have loaded, QR generation and image processing work in your browser without a network connection. A first visit still needs to load the site files; QR Studio does not promise offline access before that.</p></details>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="index.html"><img src="assets/logo.svg" width="30" height="30" alt=""><span>QR<span class="brand-accent">Studio</span></span></a>
+    <span class="footer-tagline" data-i18n="footerTagline">Create. Customize. Scan.</span>
+    <div class="footer-links"><a href="privacy.html" data-i18n="navPrivacy">Privacy</a><a href="#main" data-i18n="backTop">Back to top ↑</a></div>
+    <small data-i18n="footerRights">Free to use · Made with care</small>
+  </footer>
+</body>
+</html>
